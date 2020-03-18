@@ -1,18 +1,29 @@
-name: "Current Time 2"
-author: "Gerred Dillon <hello@gerred.org>, Shahar Frank<srfrnk@gmail.com>"
-description: "Get the current time with format"
+name: "DateTime Array"
+author: "Gerred Dillon <hello@gerred.org>, Shahar Frank<srfrnk@gmail.com>, Joshua Piper <jonjon1234.github@gmail.com>"
+description: "Get the time, exploded into year, month, etc."
 branding:
   icon: clock
   color: blue
 inputs:
-  format:
-    description: "Time format to use using [MomemtJS syntax](https://momentjs.com/)"
-    default: "<None>"
-outputs:
   time:
-    description: "The time this action was run"
-  formattedTime:
-    description: "The time this action was run - formatted using `format` input"
+    description: The input unix timestamp.
+    required: false
+    default: false
+outputs:
+  year:
+    description: The year this was ran in.
+  month:
+    description: The month this was ran in.
+  day:
+    description: The day this was ran in.
+  hour:
+    description: The hour this was ran in.
+  minute:
+    description: The minute this was ran in.
+  second:
+    description: The second this was ran in.
+  milisecond:
+    description: The milisecond this was ran in.
 runs:
   using: "node12"
   main: "index.js"
