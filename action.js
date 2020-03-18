@@ -1,16 +1,27 @@
-const core = require("@actions/core");
-var moment = require('moment');
+const core = require("@actions/core")
+const moment = require('moment')
 
-function action() {
+function action(){
     try {
-        const time = new Date().toISOString();
-        core.setOutput("time", time);
+        let time
+        let inTime = core.getInput('time', {required: false})
+        if (inTime){
+            time = new moment()
+        } else {
+            time = new moment(inTime)
+        }
 
-        const format = core.getInput('format', { required: false });
-        core.setOutput("formattedTime", moment().format(format));
-    } catch (error) {
-        core.setFailed(error.message);
+        let [year, month, day, hour, minute, second, milisecond] = time.toArray()
+        core.setOutput("year", year)
+        core.setOutput("month", month)
+        core.setOutput("day", day)
+        core.setOutput("hour", hour)
+        core.setOutput("minute", minute)
+        core.setOutput("second", second)
+        core.setOutput("milisecond", milisecond)
+    } catch (err) {
+        core.setFailed(err.message)
     }
 }
 
-module.exports = action;
+module.exports = action
